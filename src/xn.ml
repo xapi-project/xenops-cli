@@ -289,6 +289,7 @@ let parse_vif vm_id (x, idx) =
 		rate = None;
 		backend = if List.mem_assoc _bridge kvpairs then Network.Local (List.assoc _bridge kvpairs) else Network.Local "xenbr0";
 		other_config = [];
+		static_ip_setting = [];
 		locking_mode = Vif.Unlocked;
 		extra_private_keys = [];
 	}
