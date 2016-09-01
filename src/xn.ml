@@ -537,7 +537,6 @@ let diagnostics' () =
 
 let stat_vm _ id =
   let open Vm in
-  let id = match id with | Some id -> id | None -> failwith "Need VM" in
   let vm_t, vm_stat = Client.VM.stat dbg id in
   let kvs =
     match rpc_of_state vm_stat with

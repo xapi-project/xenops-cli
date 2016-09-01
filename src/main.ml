@@ -336,14 +336,14 @@ let cd_eject_cmd =
   Term.info "cd-eject" ~sdocs:_common_options ~doc ~man  
 
 let stat_vm_cmd =
-  let doc = "Stat a VM" in
+  let doc = "Query the runtime status of a running VM." in
   let man = [
     `S "DESCRIPTION";
-    `P "Get the status of a running VM";
+    `P "Query the runtime status of a running VM.";
   ] @ help in
   let vm =
-    let doc = "VM id" in
-    Arg.(value & pos 0 (some string) None & info [] ~doc) in
+    let doc = "The uuid of the VM to stat." in
+    Arg.(required & pos 0 (some string) None & info [] ~doc ~docv:"uuid") in
   Term.(ret (pure Xn.stat_vm $ common_options_t $ vm)),
   Term.info "vm-stat" ~sdocs:_common_options ~doc ~man
 
