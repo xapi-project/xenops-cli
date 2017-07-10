@@ -422,6 +422,7 @@ let add' copts x () = match x with
 						"pae", "true";
 						"viridian", "true";
 					];
+					templatedata = [];
 					bios_strings = [];
 					ty = builder_info;
 					suppress_spurious_page_faults = false;
