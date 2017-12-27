@@ -14,6 +14,7 @@
 
 open Xenops_interface
 open Xenops_client
+open Xcp_pci
 
 let diagnose_error f =
 	try
