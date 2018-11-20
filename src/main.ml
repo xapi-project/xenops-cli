@@ -55,7 +55,7 @@ let events_cmd =
     `S "DESCRIPTION";
     `P "Displays a live stream of events received from xenopsd. These events include VM powercycle events and VM configuration changes."
   ] @ help in
-  Term.(ret(pure Xn.events $ common_options_t)),
+  Term.(ret(pure Xn.updates $ common_options_t)),
   Term.info "events" ~sdocs:_common_options ~doc ~man
 
 let create_cmd =

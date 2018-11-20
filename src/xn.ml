@@ -1127,6 +1127,15 @@ let task_cancel _ = function
 let debug_shutdown () =
   Client.DEBUG.shutdown dbg ()
 
+let updates copts =
+  let lst = ref None in
+  while true do
+    let (gen,rpc) = Client.UPDATES.get_deltas "dbg" !lst None in
+    Printf.printf "%s\n%!" (Jsonrpc.to_string rpc);
+    lst := Some (Int64.to_int gen)
+  done;
+  `Ok ()
+
 let verbose_task t =
   let string_of_state = function
     | Task.Completed t -> Printf.sprintf "%.2f" t.Task.duration
@@ -1183,6 +1192,8 @@ let old_main () =
     set_worker_pool_size (int_of_string size)
   | [ "shutdown" ] ->
     debug_shutdown ()
+  | [ "events-watch2" ] ->
+    ignore(updates ())
   | cmd :: _ ->
     Printf.fprintf stderr "Unrecognised command: %s\n" cmd;
     usage ();
